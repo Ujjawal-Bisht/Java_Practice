@@ -1,11 +1,15 @@
 package day01;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class pizzaCart {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in) ;
+		Random random = new Random() ;
+		double win = random.nextDouble(0, 10) ;
+		win = Math.round(win * 100.0) / 100.0 ;
 		
 		System.out.println("Yokoso Watashino Pizza Cart.");
 		boolean cont = true ;
@@ -32,13 +36,14 @@ public class pizzaCart {
 			String choice = sc.next() ;
 			cont = (choice.equals("yes") ? true : false) ;
 		}
-		System.out.println("Your final bill is " + ttl);
+		double x = Math.round((ttl-win)*100.0)/100.0 ;
+		System.out.println("Your final bill is " + x + "\n" + ttl + "Rs. minus " + win + "Rs. random discount.");
 		
 		System.out.println("How would you like to pay sir?");
 		System.out.println("1.) Cash \n2.) Card \n3.) UPI");
 		int newCh = sc.nextInt() ;
 		if(newCh == 2) {
-			System.out.println("Then you new total will be "+ (ttl + (0.01 * ttl) ) + "Rs.\n" + ttl + " + 1% transaction fee." );
+			System.out.println("Then you new total will be "+ (x + (0.01 * x) ) + "Rs.\n" + x + " + 1% transaction fee." );
 		}
 		System.out.println("Thank You for ordering from us.");
 		sc.close();
