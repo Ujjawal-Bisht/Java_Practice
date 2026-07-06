@@ -12,13 +12,13 @@ public class CompoundInterestCalc {
 		double principle, rate, amount ;
 		int time ;
 		
-		System.out.println("Please Enter Principle Amount - ");
+		System.out.print("Please Enter Principle Amount - ");
 		principle = sc.nextDouble() ;
 		
-		System.out.println("Please Enter rate of interest - ");
+		System.out.print("Please Enter rate of interest - ");
 		rate = sc.nextDouble() ;
 		
-		System.out.println("Please Enter time(in years) - ");
+		System.out.print("Please Enter time(in years) - ");
 		time = sc.nextInt() ;
 		
 		amount = principle * Math.pow((1 + (rate/100)), time) ;
