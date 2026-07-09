@@ -11,13 +11,16 @@ public class OOPs01 {
 //		Random random = new Random() ;
 		
 		Car car1 = new Car();
-		System.out.println(car1); // This will print the object address - day04.Car@626b2d4a
+//		System.out.println(car1); // This will print the object address - day04.Car@626b2d4a
 		
-		System.out.println(car1.model);
-		System.out.println(car1.name);
+//		System.out.println(car1.model);
+//		System.out.println(car1.name);
 		
 		System.out.println(car1.isRunning);
-		car1.isRunning = true ;
+		car1.Start();
+//		car1.isRunning = true ;
+		System.out.println(car1.isRunning);
+		car1.Stop();
 		System.out.println(car1.isRunning);
 	}
 }
