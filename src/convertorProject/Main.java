@@ -8,7 +8,53 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
+
 public class Main {
+	
+	public static String readPdf(String path) throws IOException {
+        File file = new File(path);
+        try (PDDocument document = Loader.loadPDF(file)) {
+            PDFTextStripper stripper = new PDFTextStripper();
+            return stripper.getText(document);
+        }
+    }
+	
+	public static void writePDF(String outputPath, String text) {
+        try (PDDocument doc = new PDDocument()) {
+            // Create a blank page
+            PDPage page = new PDPage();
+            doc.addPage(page);
+
+            // Start writing content
+            PDPageContentStream content = new PDPageContentStream(doc, page);
+            content.setFont(new PDType1Font(Standard14Fonts.FontName.HELVETICA), 12);
+            content.beginText();
+            content.newLineAtOffset(100, 700);
+
+            // Split text into lines
+            String[] lines = text.split("\n");
+            for (String line : lines) {
+                content.showText(line);
+                content.newLineAtOffset(0, -20); // move down for next line
+            }
+
+            content.endText();
+            content.close();
+
+            // Save the PDF
+            doc.save(outputPath);
+            System.out.println("PDF written successfully at: " + outputPath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 	
 	public static String readData(String path) throws IOException {	
 		
@@ -54,6 +100,7 @@ public class Main {
 	}
 	
 	public static void convert(String path, String res)throws IOException{
+		
 		// This method will convert: text file -> word doc && doc file ->text file
 		
 		String data = readData(path) ;
@@ -64,6 +111,22 @@ public class Main {
 		}
 		return ;
 	}
+	
+	public static void convertTextToPdf(String path, String res) throws IOException{
+		
+		String data = readData(path) ;
+		writePDF(res, data);
+		
+	}
+	
+	public static void convertPdfToText(String path, String res) throws IOException{
+		
+		String data = readPdf(path) ;
+		writedata(res, data);
+		
+	}
+	
+	
 
 	public static void main(String[] args) throws IOException {
 		System.out.println("Welcome to My CLI Convertor");
@@ -82,10 +145,10 @@ public class Main {
 		
 		switch(ch) {
 			case 1 ->{
-				System.out.println("This feature will available soon....");
+				convertTextToPdf(path, res) ;			
 			}
 			case 2 ->{
-				System.out.println("This feature will available soon....");
+				convertPdfToText(path, res) ;
 			}
 			case 3 ->{
 				convert(path, res) ;
@@ -94,10 +157,10 @@ public class Main {
 				convert(path, res) ;
 			}
 			case 5 ->{
-				System.out.println("This feature will available soon....");
+				convertPdfToText(path, res) ;
 			}
 			case 6 ->{
-				System.out.println("This feature will available soon....");
+				convertTextToPdf(path, res) ;
 			}
 			default -> {
 				System.err.println("Please Enter a valid choice!3");
