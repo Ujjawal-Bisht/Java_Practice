@@ -12,18 +12,25 @@ public class BankingSystem {
 	public static void main(String[] args) {
 		System.out.println("Welcome to MyBank where your money is my money and my money is also my money.");
 		
-		System.out.println("*".repeat(25));
+		System.out.println("*".repeat(35));
 		System.out.println("1.) Create a new Bank Account\n2.) Use Existing Account\n3.) Exit");
 		int ch;
 		do {
 			System.out.print("Please Enter your Choice: ");
 			ch = sc.nextInt() ;
+			sc.nextLine();
 			
 			if(ch == 1) {
 				System.out.print("Enter Account Holder's name: ");
 				String name = sc.nextLine() ;
 				
-//				BankAccount(name) ;
+				BankAccount acc1 = new BankAccount(name) ;
+				System.out.println("Minimum balance for this account should be greater than 500Rs.\nPlease deposit some money to start a bank account.");
+				double bal = sc.nextDouble() ;
+				acc1.setBalance(bal);
+				
+				System.out.println("A new account for "+name+" has been created.");
+				
 			}else if(ch == 2) {
 				
 			}else {

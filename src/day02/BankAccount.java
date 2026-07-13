@@ -2,8 +2,9 @@ package day02;
 
 public class BankAccount {
 	
+	int AccNo ;
 	static String name ;
-	private double balance ;
+	private static double balance ;
 
 	public static String getName() {
 		return name;
@@ -15,7 +16,7 @@ public class BankAccount {
 
 	public BankAccount(String name) {
 		BankAccount.name = name ;
-		this.balance = 0 ;
+		BankAccount.balance = 0 ;
 	}
 
 	public double getBalance() {
@@ -23,7 +24,8 @@ public class BankAccount {
 	}
 
 	public void setBalance(double balance) {
-		this.balance = balance;
+		if(balance < 500)System.err.println("WARNING!!!\nMinimum of 500Rs. is required for this account.\nBelow this a small ammount will be deducted from your account every month.");
+		BankAccount.balance = balance;
 	}
 	
 	void deposit(double amount) throws InvalidAmountException{
