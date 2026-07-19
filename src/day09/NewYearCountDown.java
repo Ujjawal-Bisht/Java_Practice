@@ -21,7 +21,8 @@ public class NewYearCountDown {
 			}
 		};
 		
-		timer.schedule(task, 0, 1500);
+//		timer.schedule(task, 0, 1500);
+		timer.scheduleAtFixedRate(task, 0, 1000);
 	}
 
 }
