@@ -39,7 +39,6 @@ public class Main {
 				}
 			}
 			
-			
 		}catch(FileNotFoundException e) {
 			System.out.println("File not Found.");
 		}catch(UnsupportedAudioFileException e) {
