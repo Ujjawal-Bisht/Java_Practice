@@ -1,1 +1,15 @@
-/bin/
+# Eclipse metadata (ignore)
+.settings/
+.metadata/
+
+# Build output
+bin/
+target/
+
+# Project-specific build output
+FxProject/bin/
+FxProject/.settings/
+
+# Logs and compiled files
+*.log
+*.class
