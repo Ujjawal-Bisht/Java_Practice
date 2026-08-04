@@ -2,7 +2,6 @@ package day12;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Collections01 {
@@ -68,9 +67,11 @@ public class Collections01 {
 		System.out.println();
 		System.out.println("-------------------------------------------------------------------------------------");
 
-	
-		
+		System.out.println(l3);
+		l3.replaceAll(i -> i+(i/2)*3);
+		System.out.println(l3);
 
+		
 	}
 
 }
